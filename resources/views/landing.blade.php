@@ -5,22 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TTH - Home</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet">
 </head>
 <body class="bg-gray-50 text-gray-900">
 
     <!-- Navigation Bar -->
-    <header class="bg-blue-600 p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-3xl text-black font-bold">TTH</h1>
-            <nav class="space-x-6">
-                <a href="{{ route('landing') }}" class="text-black hover:text-blue-200">Home</a>
-                <a href="{{ route('materials.index') }}" class="text-black hover:text-blue-200">Materials</a>
-                <a href="{{ route('order.create') }}" class="text-black hover:text-blue-200">Book Order</a>
-                <a href="{{ route('about') }}" class="text-black hover:text-blue-200">About Us</a>
-                <a href="{{ route('contact.index') }}" class="text-black hover:text-blue-200">Contact Us</a>
-            </nav>
-        </div>
-    </header>
+<x-navbar />
+
 
     <!-- Main Content -->
     <main class="container mx-auto p-6">
@@ -55,7 +46,7 @@
         <section class="text-center my-8">
             <h3 class="text-2xl font-semibold mb-4">Have Questions?</h3>
             <p class="text-gray-700">Feel free to reach out to us with any inquiries or special requests.</p>
-            <a href="{{ route('contact.index') }}" class="bg-blue-600 text-white px-4 py-2 rounded mt-4 inline-block hover:bg-blue-700">Contact Us</a>
+            <a href="{{ route('contact.index') }}" class="bg-blue-600 text-white px-4 py-2 rounded mt-4 inline-block hover:bg-rose-600">Contact Us</a>
         </section>
     </main>
 

@@ -4,32 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Materials</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        .card {
-            margin: 10px;
-        }
         .card img {
             height: 200px;
             object-fit: cover;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1 class="my-4">Materials</h1>
-        <div class="row">
+<body class="bg-gray-100">
+    <x-navbar />
+    <!-- Navbar above -->
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold my-4">Materials & Equipment</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             @foreach($materials as $material)
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="{{ $material->image_url }}" class="card-img-top" alt="{{ $material->name }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $material->name }}</h5>
-                            <p class="card-text">{{ $material->description }}</p>
-                            <p class="card-text"><strong>Price:</strong> ${{ $material->price }}</p>
-                            <p class="card-text"><strong>Stock:</strong> {{ $material->stock }}</p>
-                            <a href="{{ route('materials.show', $material->id) }}" class="btn btn-primary">More Details</a>
-                        </div>
+                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                    <img src="{{ $material->image_url }}" class="w-full" alt="{{ $material->name }}">
+                    <div class="p-4">
+                        <h5 class="text-xl font-semibold">{{ $material->name }}</h5>
+                        <p class="text-gray-700">{{ $material->description }}</p>
+                        <span class="flex justify-around items-center">
+                            <p class="text-gray-900 font-semibold">Price: ₹{{ $material->price }}</p>
+                            <p class="text-gray-900 font-semibold">Stock: {{ $material->stock }}</p>
+                        </span>
+                        <a href="{{ route('materials.show', $material->id) }}" class="inline-block bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300">More Details</a>
                     </div>
                 </div>
             @endforeach

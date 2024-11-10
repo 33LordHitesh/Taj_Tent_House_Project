@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Material;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
     // Show the order booking page
     public function create()
     {
-        $materials = Material::all(); // Get materials to display in the booking form
+        $materials = DB::table('materials')->get(); // Get materials to display in the booking form
         return view('order.create', compact('materials'));
     }
 
