@@ -8,10 +8,10 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
 
 Route::get('/', [HomeController::class, 'index'])->name('landing');
-Route::get('/materials', [MaterialController::class, 'index'])->name('materials');
-Route::get('/order', [OrderController::class, 'create'])->name('order');
+Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
+Route::get('/order', [OrderController::class, 'create'])->name('order.create');
 Route::post('/order', [OrderController::class, 'store']);
-Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/payment', [OrderController::class, 'payment'])->name('payment');
 
