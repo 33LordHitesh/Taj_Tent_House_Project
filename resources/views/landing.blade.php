@@ -17,7 +17,7 @@
     <main class="container mx-auto p-6">
         <section class="text-center my-8">
             <h2 class="text-4xl font-semibold mb-4">Welcome to Taj Caterers and Tent House</h2>
-            <p class="text-gray-700">Providing high-quality tents and event materials for weddings and family functions in Bhiwani, Haryana.</p>
+            <p class="text-gray-700">Providing high-quality tents and event materials for weddings and family functions</p>
         </section>
 
         <section class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">

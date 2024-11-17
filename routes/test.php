@@ -1,4 +1,20 @@
-<!-- 
+<!--
+
+Categories:Cat_Code
+-- Cooking Equipment 010
+-- Decor 011
+-- Disposable 012
+-- Furniture 013
+-- Serving 014
+-- Sanitation 015
+-- Miscellaneous 016
+
+
+**************************************///////////**********************
+'name', 'Cat (category)', 'Cat_code'
+**************************************///////////**********************
+
+
 'Tablecloths', https://m.media-amazon.com/images/I/81ZL4mMsRZL.jpg 
 'Napkins', https://fingercraft.in/wp-content/uploads/2023/09/White-Lace-Table-Napkins-Aqua-1.jpg
 'Dinnerware', https://market99.com/cdn/shop/articles/best-types-of-dinnerware-set-2023-market-99.jpg?v=1697004203
@@ -51,18 +67,103 @@
 'Cocktail Tables', https://www.sitting-pretty.co.za/wp-content/uploads/2023/01/IMG-20230801-WA0040-e1694594265206.jpg
 'Bars', https://media-api.xogrp.com/images/58aaa9e6-21d8-4d01-9b14-5e753f47995a~rs_768.h-cr_0.0.1076.1435
 
--- Sanitation and Miscellaneous
+-- Sanitation 
 'Garbage Cans', https://dictionary.cambridge.org/images/thumb/wheeli_noun_002_40941.jpg?version=6.0.36
 'Handwashing Stations', https://cdn.unitedsiteservices.com/wp-content/smush-webp/2024/04/Hand-Hygiene-Solutions-Tag-2-500x500-02.png.webp
 'Hand Sanitizer', https://assets.unileversolutions.com/v1/34829171.jpg
 'Cleaning Towels', https://www.lushomes.in/cdn/shop/products/OICOTPKTP6-1009_1_1024x1024@2x.jpg?v=1678360944
 'Disposable Gloves', https://www.gloves.com/cdn/shop/articles/gloves-for-big-hands-blue-1.jpg?v=1700548055&width=1500
 
--- Complete Kitchen Set
+-- Miscellaneous
 'Complete Kitchen Set', https://www.pnbkitchenmate.com/cdn/shop/products/101pc_grande.jpg?v=1602912889
 'Decoration Items', https://rukminim2.flixcart.com/image/850/1000/kxxl9jk0/wall-decoration/2/g/l/home-decoration-items-for-living-room-wall-hanging-decorative-original-imaga9rptfch5qxm.jpeg?q=90&crop=false
 'Music System',  https://5.imimg.com/data5/ANDROID/Default/2021/3/TE/QE/DW/120444173/product-jpeg-500x500.jpg
 'Decorative Lights', https://specialyou.in/cdn/shop/files/813Sn1lHoJL._SL1500.jpg?v=1688714524&width=2048
 'Carpets', https://5.imimg.com/data5/ANDROID/Default/2022/7/US/UR/NC/58253320/1657717929780-jpg.jpg
 'Decorative Flowers', https://m.media-amazon.com/images/I/61KeCfhyAaL.jpg
-'LED Screens',  https://ultravisionledsolutions.com/cdn/shop/products/STAGERenderingForMarketingPurpose-min-min.png?v=1658158319&width=4000 -->
+'LED Screens',  https://ultravisionledsolutions.com/cdn/shop/products/STAGERenderingForMarketingPurpose-min-min.png?v=1658158319&width=4000 
+
+
+
+Item_name, Cat (category), Cat_Code
+-------------------------------------
+Tablecloths, Serving, 014
+Napkins, Serving, 014
+Dinnerware, Serving, 014
+Flatware, Serving, 014
+Charger Plates, Serving, 014
+Glassware, Serving, 014
+Salt and Pepper Shakers, Serving, 014
+Water Pitchers, Serving, 014
+Bread Baskets, Serving, 014
+Centerpieces, Decor, 011
+Vases, Decor, 011
+Plastic Cutlery, Disposable, 012
+Disposable Plates, Disposable, 012
+Paper Napkins, Disposable, 012
+Plastic Drinkware, Disposable, 012
+Appetizer Plates, Disposable, 012
+Cocktail Picks, Disposable, 012
+Foil Pans, Disposable, 012
+Aluminum Foil, Disposable, 012
+Induction Cookers, Cooking Equipment, 010
+Portable Grills, Cooking Equipment, 010
+Outdoor Burners, Cooking Equipment, 010
+Holding Cabinets, Cooking Equipment, 010
+Big Stoves, Cooking Equipment, 010
+Serving Trays, Serving, 014
+Serving Utensils, Serving, 014
+Ice, Serving, 014  (Note: Ice might not be the best category for this)
+Beverage Dispensers, Serving, 014
+Coffee Airpots, Serving, 014
+Tents, Furniture, 013
+Shamiyana, Furniture, 013
+Iron Tables, Furniture, 013
+Iron Chairs, Furniture, 013
+Standing Fans, Furniture, 013
+Ropes, Furniture, 013  (Note: Ropes might not be the best category for this)
+Bamboos (Poles), Furniture, 013
+Folding Tables, Furniture, 013
+Folding Chairs, Furniture, 013
+Benches, Furniture, 013
+Cocktail Tables, Furniture, 013
+Bars, Furniture, 013
+Garbage Cans, Sanitation, 015
+Handwashing Stations, Sanitation, 015
+Hand Sanitizer, Sanitation, 015
+Cleaning Towels, Sanitation, 015
+Disposable Gloves, Sanitation, 015
+Complete Kitchen Set, Miscellaneous, 016
+Decoration Items, Miscellaneous, 016
+Music System, Miscellaneous, 016
+Decorative Lights, Miscellaneous, 016
+Carpets, Miscellaneous, 016
+Decorative Flowers, Miscellaneous, 016
+LED Screens, Miscellaneous, 016
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My App</title>
+</head>
+<body>
+    <header>
+        </header>
+
+    <main>
+        @yield('content')
+    </main>
+
+    <footer>
+        </footer>
+</body>
+</html>
+-->

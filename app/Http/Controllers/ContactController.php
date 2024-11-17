@@ -10,24 +10,22 @@ class ContactController extends Controller
     // Show the contact page
     public function index()
     {
-        return view('contact.index');
+        return view('contact');
     }
 
-    // Store a new contact message
-    public function store(Request $request)
+    public function storeCallback(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
+            'mobile' => 'required|string|max:15',
             'email' => 'required|email|max:255',
-            'message' => 'required|string',
+            'event_type' => 'required|string',
+            'message' => 'nullable|string',
         ]);
 
-        ContactMessage::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'message' => $request->message,
-        ]);
+        CallbackRequest::create($validatedData);
 
-        return redirect()->route('contact.index')->with('success', 'Message sent successfully!');
+        // You might want to add a success message or redirect to a thank you page
+        return redirect()->back()->with('success', 'Callback request submitted successfully.');
     }
 }

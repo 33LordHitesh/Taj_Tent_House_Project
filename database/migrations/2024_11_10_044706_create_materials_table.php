@@ -19,6 +19,9 @@ return new class extends Migration
             $table->integer('stock')->default(0); // Quantity in stock
             $table->string('image_url')->nullable(); // URL for material image
             $table->timestamps(); // Created and updated timestamps
+            // Following two rows are added using a different migrate file: **********************************
+            // $table->string('Cat', 50)->nullable(); // Equivalent to varchar(50) and allows NULL values
+            // $table->integer('Cat_code')->nullable(); // Equivalent to int(11) and allows NULL values
         });
     }
 

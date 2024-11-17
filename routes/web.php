@@ -13,8 +13,10 @@ Route::get('/materials/{id}', [MaterialController::class, 'show'])->name('materi
 Route::get('/order', [OrderController::class, 'create'])->middleware(['auth', 'verified'])->name('order.create');
 Route::post('/order.store', [OrderController::class, 'store'])->name('order.store');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/callback', [ContactController::class, 'storeCallback'])->name('store.callback');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/payment', [OrderController::class, 'payment'])->name('payment');
+Route::post('/show-bill', [OrderController::class, 'showBill'])->name('show.bill');
 
 
 Route::get('/dashboard', function () {
