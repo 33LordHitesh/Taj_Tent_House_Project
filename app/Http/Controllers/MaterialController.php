@@ -14,8 +14,9 @@ class MaterialController extends Controller
         $materials = DB::table('materials')->get();
         return view('materials.index', compact('materials'));
     }
+    // Show a single material detail
     public function show($id)
-{
+    {
     $material = DB::table('materials')->where('id', $id)->first();
     
     if (!$material) {
@@ -23,7 +24,12 @@ class MaterialController extends Controller
     }
 
     return view('materials.show', compact('material'));
-}
-
+    }
+    // Getter function to get materials
+    public function getMaterials()
+    {
+        $materials = DB::table('materials')->get(); // Fetch all materials
+    return $materials;
+    }
 
 }

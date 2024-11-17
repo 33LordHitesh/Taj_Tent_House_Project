@@ -154,7 +154,7 @@
               
             <div class="checkbox-wrapper-16">
               <label class="checkbox-wrapper">
-                <input type="checkbox" class="checkbox-input" name="package[]" value="standard-no-catering" />
+                <input type="checkbox" class="checkbox-input" name="package" value="standard-no-catering" />
                 <span class="checkbox-tile">
                   <h3 style="font-size: 16px; font-weight: bold; margin-bottom: 8px;">Standard (No Catering)</h3>
                   <p>Description of Standard (No Catering)</p>
@@ -163,7 +163,7 @@
             </div>
             <div class="checkbox-wrapper-16">
               <label class="checkbox-wrapper">
-                <input type="checkbox" class="checkbox-input" name="package[]" value="deluxe-no-catering" />
+                <input type="checkbox" class="checkbox-input" name="package" value="deluxe-no-catering" />
                 <span class="checkbox-tile">
                   <h3 style="font-size: 16px; font-weight: bold; margin-bottom: 8px;">Deluxe (No Catering)</h3>
                   <p>Description of Deluxe (No Catering)</p>
@@ -172,7 +172,7 @@
             </div>
             <div class="checkbox-wrapper-16">
               <label class="checkbox-wrapper">
-                <input type="checkbox" class="checkbox-input" name="package[]" value="deluxe-catering" />
+                <input type="checkbox" class="checkbox-input" name="package" value="deluxe-catering" />
                 <span class="checkbox-tile">
                   <h3 style="font-size: 16px; font-weight: bold; margin-bottom: 8px;">Deluxe (With Catering)</h3>
                   <p>Description of Deluxe (With Catering)</p>
@@ -181,7 +181,7 @@
             </div>
             <div class="checkbox-wrapper-16">
               <label class="checkbox-wrapper">
-                <input type="checkbox" class="checkbox-input" name="package[]" value="custom" />
+                <input type="checkbox" class="checkbox-input" name="package" value="custom" />
                 <span class="checkbox-tile">
                   <h3 style="font-size: 16px; font-weight: bold; margin-bottom: 8px;">Customize your Package</h3>
                   <p>Description of Custome Package</p>

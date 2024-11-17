@@ -8,7 +8,7 @@ use App\Models\Package;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-$packages = Package::all();
+// $packages = Package::all();
 
 class OrderController extends Controller
 {
@@ -79,8 +79,7 @@ class OrderController extends Controller
     //     'email' => 'required|email',
     //     'billing_address' => 'required|string',
     //     'event_type' => 'required|string',
-    //     'package' => 'nullable|array',
-    //     'package.*' => 'required|string|in:standard-no-catering,deluxe-no-catering,deluxe-catering,custom',
+    //     'package' => 'required|string|in:standard-no-catering,deluxe-no-catering,deluxe-catering,custom',
     //     'quantity' => 'nullable|array', // The quantity array is optional
     //     'quantity.*' => 'nullable|numeric|min:0', // Each quantity must be a numeric value, greater than or equal to 0
     // ]);
@@ -100,12 +99,26 @@ class OrderController extends Controller
     $selectedPackage = $request->input('package');
     $selectedEquipment = $request->input('equipment', []); // Ensure it's an array even if empty
 
+
+// Print the data to the console
+echo "Name: " . $name . "\n";
+echo "Mobile Number: " . $mobile . "\n";
+echo "Email: " . $email . "\n";
+echo "Event Type: " . $eventType . "\n";
+echo "Selected Package: " . $selectedPackage . "\n";
+
+// Print the selected equipment
+echo "Selected Equipment:\n";
+foreach ($selectedEquipment as $equipment) {
+    echo "- " . $equipment . "\n";
+}
     // Calculate total amount
     $totalAmount = 0;
 
     if ($selectedPackage) {
         // Calculate based on package price (assuming you have a Package model)
-        $package = Package::find($selectedPackage);
+        $package = Package::findOrFail($selectedPackage);
+        // $package = DB::table('packages')->findOrFail($selectedPackage);
         $totalAmount = $package->price;
     } else {
         // Calculate based on selected equipment
@@ -116,7 +129,15 @@ class OrderController extends Controller
     }
 
     // Pass data to the view
-    return view('order.bill', compact('name', 'mobile', 'email', 'eventType', 'selectedPackage', 'selectedEquipment', 'totalAmount'));
+    return view('order.bill', [
+        'name' => $name,
+        'mobile' => $mobile,
+        'email' => $email,
+        'eventType' => $eventType,
+        'selectedPackage' => $selectedPackage,
+        'selectedEquipment' => $selectedEquipment,
+        'totalAmount' => $totalAmount,
+    ]);
 }
 
     // Show the payment page

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BillController;
 
 Route::get('/', [HomeController::class, 'index'])->name('landing');
 Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
@@ -17,6 +18,7 @@ Route::post('/callback', [ContactController::class, 'storeCallback'])->name('sto
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/payment', [OrderController::class, 'payment'])->name('payment');
 Route::post('/show-bill', [OrderController::class, 'showBill'])->name('show.bill');
+// Route::post('/show-bill', [BillController::class, 'showBill'])->name('show.bill');
 
 
 Route::get('/dashboard', function () {

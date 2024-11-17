@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,38 +44,32 @@
     <h2>Package Details</h2>
     @php
         // Retrieve the selected package from the database using the Package model
-        $package = Package::where('slug', $selectedPackage)->first();
+        $tempId = 0;
+            switch ($selectedPackage) {
+                case 'standard-no-catering':
+                    $tempId = 1;
+                    break;
+                case 'deluxe-no-catering':
+                    $tempId = 2;
+                    break;
+                case 'deluxe-catering':
+                    $tempId = 3;
+                    break;
+                default: 0;
+                    break;
+            }
+            $package = Package::where('id', $tempId)->first();
     @endphp
 
-    @if ($package)
-        <p><strong>Selected Package:</strong> {{ $package->name }}</p>
-        <p><strong>Description:</strong> {{ $package->description }}</p>
-        <p><strong>Price:</strong> ₹{{ $package->price }}</p>
-        
-        <!-- Optionally, display the materials related to the package -->
-        @if ($package->materials->count() > 0)
-            <h3>Included Materials</h3>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Material Name</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($package->materials as $material)
-                        <tr>
-                            <td>{{ $material->name }}</td>
-                            <td>₹{{ $material->price }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        @if ($package)
+            <p><strong>Selected Package:</strong> {{ $package->name }}</p>
+            <p><strong>Description:</strong> {{ $package->description }}</p>
+            <p><strong>Price:</strong> ₹{{ $package->price }}</p>
+            
+        @else
+            <p>Package not found.</p>
         @endif
     @else
-        <p>Package not found.</p>
-    @endif
-@else
     <h2>Equipment Details</h2>
     <table border="1">
         <thead>
@@ -86,22 +81,28 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($selectedEquipment as $equipmentId => $quantity)
-                @php
-                    $equipment = Material::find($equipmentId); // Changed to Material model
-                @endphp
-                @if ($equipment)
-                    <tr>
-                        <td>{{ $equipment->name }}</td>
-                        <td>{{ $quantity }}</td>
-                        <td>₹{{ $equipment->price }}</td>
-                        <td>₹{{ $equipment->price * $quantity }}</td>
-                    </tr>
-                @endif
-            @endforeach
+        @if ($selectedEquipment && is_array($selectedEquipment))
+    @foreach ($selectedEquipment as $equipmentId => $quantity)
+        @php
+            $equipment = Material::find($equipmentId);
+        @endphp
+        @if ($equipment)
+            <tr>
+                <td>{{ $equipment->name }}</td>
+                <td>{{ $quantity }}</td>
+                <td>₹{{ $equipment->price }}</td>
+                <td>₹{{ $equipment->price * $quantity }}</td>
+            </tr>
+        @endif
+    @endforeach
+@else
+    <tr>
+        <td colspan="4">No equipment selected.</td>
+    </tr>
+@endif
         </tbody>
     </table>
-@endif
+    @endif
 
 
     <p class="total-amount"><strong>Total Amount:</strong> ₹{{ $totalAmount }}</p>
