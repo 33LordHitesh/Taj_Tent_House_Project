@@ -215,9 +215,7 @@
     </table>
     </div>
 
-    <div>
         <button type="submit" id="show-bill" class="bg-blue-600 text-white px-4 py-2 rounded" >Show Bill</button>
-    </div>
 
     </form>
 

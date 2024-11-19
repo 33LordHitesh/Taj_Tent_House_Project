@@ -58,7 +58,7 @@
                 default: 0;
                     break;
             }
-            $package = Package::where('id', $tempId)->first();
+            $package = \App\Models\Package::where('id', $tempId)->first();
     @endphp
 
         @if ($package)

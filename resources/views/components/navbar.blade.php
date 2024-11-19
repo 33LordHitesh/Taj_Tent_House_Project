@@ -36,7 +36,7 @@
 <header class="p-4 shadow-xl">
     <div class="container mx-auto flex justify-between items-center">
         <div class="flex items-center">
-            <img src="{{ asset('images/logo.jpeg') }}" alt="TTH Logo" class="h-16 mr-4 p-0">
+            <img src="{{ asset('images/logo.jpeg') }}" alt="TTH Logo" class="h-16 mr-4 p-0 border-8 border-rose-600 rounded-md">
         </div>
         <nav class="flex items-center">
             <a href="{{ route('landing') }}" class="text-black text-lg py-2 px-4 rounded-md hover:bg-rose-600 hover:text-white transition duration-300">Home</a>

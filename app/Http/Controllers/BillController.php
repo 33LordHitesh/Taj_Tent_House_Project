@@ -26,7 +26,7 @@ class BillController extends Controller
     
     
     // Check the posted data (for debugging)
-    // dd($validatedData);
+    // dd($validatedData); 
 
         // Assuming the data is being passed through the request (you can modify this based on your actual request structure)
         $name = $request->input('name');
@@ -78,6 +78,9 @@ class BillController extends Controller
         // dd($validatedData);
         // dd($name, $mobile, $email, $eventType, $selectedPackage, $selectedEquipment, $totalAmount);
         // Return the view with the necessary data
+
+
+
         return view('order.bill', [
             'name' => $name,
             'mobile' => $mobile,
