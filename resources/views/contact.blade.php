@@ -47,11 +47,10 @@
                         Would you like to request a callback regarding any of our services? Click the button below, fill in your details, and we’ll get back to you within 24 hours (on business days).
                     </p>
                     <button 
-                        type="button" 
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105"
-                        data-toggle="modal" 
-                        data-target="#callbackModal">
-                        Request a Call
+                    type="button" 
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105"
+                    onclick="document.getElementById('callbackModal').classList.remove('hidden');">
+                    Request a Call
                     </button>
                 </div>
             </div>
@@ -59,7 +58,7 @@
     </div>
 
     <!-- Callback Modal -->
-    <div id="callbackModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+    <div id="callbackModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 items-center justify-center">
         <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
             <h3 class="text-2xl font-semibold text-gray-800 mb-4">Request a Callback</h3>
             <form>
@@ -77,20 +76,11 @@
                 </div>
                 <div class="flex justify-end">
                     <button type="button" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-4 rounded-lg mr-2" onclick="document.getElementById('callbackModal').classList.add('hidden');">Cancel</button>
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Submit</button>
+                    <button type="submit" class="bg-blue-500 hover:bg-rose-600 text-white font-bold py-2 px-4 rounded-lg">Submit</button>
                 </div>
             </form>
         </div>
     </div>
-
-    <script>
-        document.querySelectorAll('[data-toggle="modal"]').forEach(button => {
-            button.addEventListener('click', () => {
-                document.getElementById(button.getAttribute('data-target')).classList.remove('hidden');
-            });
-        });
-    </script>
-
 
 </body>
 </html>
