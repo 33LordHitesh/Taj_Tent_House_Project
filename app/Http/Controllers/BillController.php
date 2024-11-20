@@ -15,16 +15,16 @@ class BillController extends Controller
         // Validate the form data
     $validatedData = $request->validate([
         'name' => 'required|string|max:255',
-        'mobile_number' => 'required|string|max:10',
+        'mobile_number' => 'required|string|max:11',
         'email' => 'required|email',
         'billing_address' => 'required|string',
         'event_type' => 'required|string',
-        'package' => 'required|string|in:standard-no-catering,deluxe-no-catering,deluxe-catering,custom',
+        'package' => 'nullable|string|in:standard-no-catering,deluxe-no-catering,deluxe-catering,custom',
         'quantity' => 'nullable|array', // The quantity array is optional
         'quantity.*' => 'nullable|numeric|min:0', // Each quantity must be a numeric value, greater than or equal to 0
+        'selected_items' => 'nullable|array', // The selected_items array is required
+        'selected_items.*' => 'exists:materials,id', // Each selected item must exist in the materials table
     ]);
-    
-    
     // Check the posted data (for debugging)
     // dd($validatedData); 
 
@@ -34,7 +34,17 @@ class BillController extends Controller
         $email = $request->input('email');
         $eventType = $request->input('event_type');
         $selectedPackage = $request->input('package');
-        $selectedEquipment = $request->input('selected_equipment');
+        $selectedItems = $request->input('selected_items',[]);
+        $quantities = $request->input('quantity', []); // Default to an empty array if no quantities are provided
+        // dd($quantities);
+        $selectedItemsWithQuantities = [];
+        foreach ($selectedItems as $itemId) {
+            $selectedItemsWithQuantities[] = [
+                'id' => $itemId,
+                'quantity' => isset($quantities[$itemId]) ? $quantities[$itemId] : 0, // Use 0 if no quantity is provided
+            ];
+        }
+        // dd($selectedItemsWithQuantities);
         
         // Retrieve the package details from the Package model if selected
         if ($selectedPackage) {
@@ -65,29 +75,44 @@ class BillController extends Controller
             $totalAmount += $package->price;
         }
 
-        // If equipment is selected, calculate the total price based on quantities
-        if ($selectedEquipment) {
-            foreach ($selectedEquipment as $equipmentId => $quantity) {
-                $equipment = Material::find($equipmentId);
-                if ($equipment) {
-                    $totalAmount += $equipment->price * $quantity;
+        // If item is selected, calculate the total price based on quantities
+        if ($selectedItemsWithQuantities) {
+            $materialIds = array_column($selectedItemsWithQuantities, 'id');
+            $materials = \DB::table('materials')->whereIn('id', $materialIds)->get()->keyBy('id');
+            // $totalAmount = 0;
+            foreach ($selectedItemsWithQuantities as $item) {
+                $material = $materials->get($item['id']);
+                if ($material) {
+                    $totalAmount += $material->price * $item['quantity'];
                 }
             }
         }
+        // dd($selectedItemsWithQuantities);
 
-        // dd($validatedData);
-        // dd($name, $mobile, $email, $eventType, $selectedPackage, $selectedEquipment, $totalAmount);
+        $selectedItemsWithDetails = [];
+        if ($selectedItemsWithQuantities) {
+            foreach ($selectedItemsWithQuantities as $item) {
+                $material = \App\Models\Material::find($item['id']);
+                if ($material) {
+                    $selectedItemsWithDetails[] = [
+                        'name' => $material->name,
+                        'quantity' => $item['quantity'],
+                        'price' => $material->price,
+                        'total' => $material->price * $item['quantity'],
+                    ];
+                }
+            }
+        }
+        // dd($selectedItemsWithDetails); 
+
         // Return the view with the necessary data
-
-
-
         return view('order.bill', [
             'name' => $name,
             'mobile' => $mobile,
             'email' => $email,
             'eventType' => $eventType,
             'selectedPackage' => $selectedPackage,
-            'selectedEquipment' => $selectedEquipment,
+            'selectedItems' => $selectedItemsWithDetails, // Structured selected items data
             'totalAmount' => $totalAmount,
         ]);
     }

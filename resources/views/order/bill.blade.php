@@ -29,8 +29,11 @@
             background-color: #f2f2f2;
         }
     </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet">
 </head>
 <body>
+
     <h1>Your Bill</h1>
 
     <div class="customer-info">
@@ -81,30 +84,47 @@
             </tr>
         </thead>
         <tbody>
-        @if ($selectedEquipment && is_array($selectedEquipment))
-    @foreach ($selectedEquipment as $equipmentId => $quantity)
-        @php
-            $equipment = Material::find($equipmentId);
-        @endphp
-        @if ($equipment)
-            <tr>
-                <td>{{ $equipment->name }}</td>
-                <td>{{ $quantity }}</td>
-                <td>₹{{ $equipment->price }}</td>
-                <td>₹{{ $equipment->price * $quantity }}</td>
-            </tr>
-        @endif
-    @endforeach
-@else
-    <tr>
-        <td colspan="4">No equipment selected.</td>
-    </tr>
-@endif
+            @if (!empty($selectedItems))
+                @foreach ($selectedItems as $item)
+                    <tr>
+                        <td>{{ $item['name'] }}</td>
+                        <td>{{ $item['quantity'] }}</td>
+                        <td>₹{{ $item['price'] }}</td>
+                        <td>₹{{ $item['quantity'] * $item['price'] }}</td>
+                    </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td colspan="4">No equipment selected.</td>
+                </tr>
+            @endif
         </tbody>
     </table>
     @endif
 
 
     <p class="total-amount"><strong>Total Amount:</strong> ₹{{ $totalAmount }}</p>
+
+    <!-- <div class="flex justify-center space-x-4 mt-6"> -->
+    <!-- Confirm Order Button
+    <form action="{{ route('order.create') }}" method="POST" class="inline">
+        @csrf
+        <button 
+            type="submit" 
+            class="px-6 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition"
+        >
+            Confirm Order
+        </button>
+    </form> -->
+
+    <!-- Back Button -->
+    <!-- <a 
+        href="{{ url()->previous() }}" 
+        class="px-6 py-2 text-white bg-gray-500 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transition"
+    >
+        Back
+    </a> -->
+</div>
+
 </body>
 </html>

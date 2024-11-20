@@ -196,6 +196,7 @@
     <table style="width: 100%; border-collapse: collapse;">
       <thead>
           <tr>
+          <th style="border: 1px solid #ccc; padding: 8px;">Select</th>
           <th style="border: 1px solid #ccc; padding: 8px;">Item Image</th>
           <th style="border: 1px solid #ccc; padding: 8px;">Item Name</th>
           <th style="border: 1px solid #ccc; padding: 8px;">Item Price</th>
@@ -205,6 +206,9 @@
       <tbody>
           @foreach ($materials as $material)
           <tr>
+              <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">
+                <input type="checkbox" name="selected_items[]" value="{{ $material->id }}">
+              </td>
               <td style="border: 1px solid #ccc; padding: 8px;"><img src="{{ $material->image_url }}" alt="{{ $material->name }}" style="width: 50px;"></td>
               <td style="border: 1px solid #ccc; padding: 8px;">{{ $material->name }}</td>
               <td style="border: 1px solid #ccc; padding: 8px;">₹{{ $material->price }}</td>
@@ -216,6 +220,16 @@
     </div>
 
         <button type="submit" id="show-bill" class="bg-blue-600 text-white px-4 py-2 rounded" >Show Bill</button>
+
+        @if ($errors->any())
+    <div style="color: red;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     </form>
 
