@@ -12,42 +12,84 @@
 <x-navbar />
 
 
-<div class="contact-us">
-  <img src="{{ asset('images/taj_contact_bg.jpg') }}" alt="TAJ Caterers & Tent House - Contact Us">
+<div class="contact-us flex flex-col items-center justify-center">
+  <img src="{{ asset('images/logo2.png') }}" alt="TAJ Caterers & Tent House - Contact Us" class="w-20">
   <div class="contact-details">
-    <h2>TAJ Caterers & Tent House</h2>
-    <p>Feel free to contact us regarding quotations and any event inquiries.</p>
-    <ul>
-      <li>Mobile: <a href="tel:9174677101">+91-9174677101</a></li>
-      <li>Email: <a href="mailto:taj33tents.business@gmail.com">taj33tents.business@gmail.com</a></li>
-      <li>Proprietor: Hitesh Kumar</li>
-    </ul>
-  </div>
+  <div class="py-12 bg-gray-100">
+        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white shadow-sm sm:rounded-lg p-8">
+                <!-- Hero Section -->
+                <div class="text-center mb-8">
+                    <h1 class="text-4xl font-bold text-gray-800">Taj Caterers & Tent House</h1>
+                    <p class="text-lg text-gray-600 mt-4">Feel free to contact us regarding quotations and event inquiries. We’re here to make your events unforgettable!</p>
+                </div>
 
-  <div class="contact-us">
-    <div class="callback-request">
-        <p>Would you like to request a callback from us regarding anything? Click below and fill in the details, and we will call you within 24 hours (business days).</p>
-        <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" data-toggle="modal" data-target="#callbackModal">Request a Call</button>
-    </div>
+                <!-- Contact Information -->
+                <div class="mb-12">
+                    <ul class="space-y-4">
+                        <li class="text-lg text-gray-700">
+                            <strong>Mobile:</strong> 
+                            <a href="tel:9174677101" class="text-blue-500 hover:underline">+91-9174677101</a>
+                        </li>
+                        <li class="text-lg text-gray-700">
+                            <strong>Email:</strong> 
+                            <a href="mailto:taj33tents.business@gmail.com" class="text-blue-500 hover:underline">taj33tents.business@gmail.com</a>
+                        </li>
+                        <li class="text-lg text-gray-700">
+                            <strong>Proprietor:</strong> Hitesh Kumar
+                        </li>
+                    </ul>
+                </div>
 
-    <div id="callbackModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-1 w-full md:inset-0 h-modal md:h-full">
-        <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                <div class="flex justify-between items-start p-4 rounded-t border-b dark:border-gray-600">
-                    <h3 class="text-xl font-medium text-gray-900 dark:text-white">Request a Callback</h3>
-                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="callbackModal">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <!-- Callback Request Section -->
+                <div class="callback-request text-center">
+                    <p class="text-lg text-gray-700 mb-6">
+                        Would you like to request a callback regarding any of our services? Click the button below, fill in your details, and we’ll get back to you within 24 hours (on business days).
+                    </p>
+                    <button 
+                        type="button" 
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105"
+                        data-toggle="modal" 
+                        data-target="#callbackModal">
+                        Request a Call
                     </button>
                 </div>
-                <div class="p-4 space-y-4">
-                    <form id="callbackForm" method="POST" action="{{ route('store.callback') }}">
-                        @csrf
-                        <div>
-                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name</label>
-                            <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                        </div>
-                        <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-7
-</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Callback Modal -->
+    <div id="callbackModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Request a Callback</h3>
+            <form>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2" for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2" for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-medium mb-2" for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Your Message" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-4 rounded-lg mr-2" onclick="document.getElementById('callbackModal').classList.add('hidden');">Cancel</button>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('[data-toggle="modal"]').forEach(button => {
+            button.addEventListener('click', () => {
+                document.getElementById(button.getAttribute('data-target')).classList.remove('hidden');
+            });
+        });
+    </script>
 
 
 </body>

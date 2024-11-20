@@ -16,7 +16,12 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-}
+    }
+    .large-text {
+    font-size: 80px;
+    color: white;
+    margin-bottom: 1rem; /* Adjust the margin as needed */
+    }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -26,15 +31,15 @@
 
     <!-- Main Content -->
     <main class="container mx-auto p-6">
-        <section class="text-center my-8 hero-section rounded-md">
-            <p class="text-base mb-4 text-white">Welcome to Taj Caterers and Tent House</p>
+        <section class="text-center my-4 hero-section rounded-md">
+        <p class="large-text mb-4 font-bold text-white">Welcome to Taj Caterers and Tent House</p>
             <!-- <img src="/images/wedding.jpeg" alt=""> -->
-            <p class="text-gray-700">Providing high-quality tents and event materials for weddings and family functions</p>
+            <p class="text-white text-2xl">Providing high-quality tents and event materials for weddings and family functions</p>
         </section>
 
         <!-- <section class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8"> -->
             <!-- Materials Section -->
-            <div class="flex items-center justify-around gap-4 p-4 p-4 border rounded-lg shadow-md bg-white">
+            <div class="flex items-center justify-around gap-4 p-4 border rounded-lg shadow-md bg-white mb-2">
                 <!-- Content Block -->
                 <div>
                     <h3 class="text-4xl font-semibold mb-2">Our Materials</h3>
@@ -49,17 +54,29 @@
 
 
             <!-- Order Booking Section -->
-            <div class="p-4 border rounded-lg shadow-md bg-white">
-                <h3 class="text-2xl font-semibold mb-2">Book an Order</h3>
+            <div class="flex items-center justify-around gap-4 p-4 border rounded-lg shadow-md bg-white mb-2">
+                <!-- Image Block -->
+                <div class="w-1/2">
+                    <img src="/images/catering2.jpeg" alt="Event materials" class="rounded-lg shadow-md ">
+                </div>
+                <div>
+                <h3 class="text-4xl font-semibold mb-2">Book an Order</h3>
                 <p>Ready to book? Select the materials you need, choose a date, and place an order easily.</p>
                 <a href="{{ route('order.create') }}" class="text-blue-600 font-bold hover:underline mt-2 inline-block">Book Now</a>
+                </div>
             </div>
 
             <!-- About Section -->
-            <div class="p-4 border rounded-lg shadow-md bg-white">
-                <h3 class="text-2xl font-semibold mb-2">About Us</h3>
+            <div class="flex items-center justify-around gap-4 p-4 border rounded-lg shadow-md bg-white mb-2">
+                <div>
+                <h3 class="text-4xl font-semibold mb-2">About Us</h3>
                 <p>Learn more about our business and our dedication to making your events memorable.</p>
                 <a href="{{ route('about') }}" class="text-blue-600 font-bold hover:underline mt-2 inline-block">Learn More</a>
+                </div>
+                <!-- Image Block -->
+                <div class="w-1/2">
+                    <img src="/images/tent2.jpeg" alt="Event materials" class="rounded-lg shadow-md ">
+                </div>
             </div>
         </section>
 
