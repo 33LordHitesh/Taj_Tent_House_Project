@@ -140,9 +140,6 @@ foreach ($selectedEquipment as $equipment) {
     ]);
 }
 
-    // Show the payment page
-    public function payment()
-    {
-        return view('order.payment');
-    }
+    
 }
+

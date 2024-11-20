@@ -32,19 +32,26 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
+    <x-navbar />
 
-    <h1>Your Bill</h1>
-
-    <div class="customer-info">
-        <p><strong>Name:</strong> {{ $name }}</p>
-        <p><strong>Mobile:</strong> {{ $mobile }}</p>
-        <p><strong>Email:</strong> {{ $email }}</p>
-        <p><strong>Event Type:</strong> {{ $eventType }}</p>
+    <div class="flex justify-center items-center h-20">
+    <h1 class="text-3xl font-bold text-rose-600">Your Quotation</h1>
     </div>
+    <div class="flex justify-center">
+    <section class="quotation-slip bg-slate-200 p-4 rounded-lg m-4 shadow-md w-3/4">
+    <div class="flex justify-center w-full">
+    <div class="customer-info bg-white p-6 rounded-lg shadow-md mb-6 w-1/2">
+        <p class="mb-2"><strong>Name:</strong> {{ $name }}</p>
+        <p class="mb-2"><strong>Mobile:</strong> {{ $mobile }}</p>
+        <p class="mb-2"><strong>Email:</strong> {{ $email }}</p>
+        <p class="mb-2"><strong>Event Type:</strong> {{ $eventType }}</p>
+    </div>
+    </div>  
+
 
     @if ($selectedPackage)
-    <h2>Package Details</h2>
+    <h2 class="text-2xl font-semibold mb-4 text-gray-700 text-center justify-center items-center">Package Details</h2>
     @php
         // Retrieve the selected package from the database using the Package model
         $tempId = 0;
@@ -63,68 +70,65 @@
             }
             $package = \App\Models\Package::where('id', $tempId)->first();
     @endphp
-
+            <div class="flex justify-center">
         @if ($package)
-            <p><strong>Selected Package:</strong> {{ $package->name }}</p>
-            <p><strong>Description:</strong> {{ $package->description }}</p>
-            <p><strong>Price:</strong> ₹{{ $package->price }}</p>
-            
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6 w-1/2">
+                <p class="mb-2"><strong>Selected Package:</strong> {{ $package->name }}</p>
+                <p class="mb-2"><strong>Description:</strong> {{ $package->description }}</p>
+                <p class="mb-2"><strong>Price:</strong> ₹{{ $package->price }}</p>
+            </div>
         @else
-            <p>Package not found.</p>
+            <p class="text-red-600">Package not found.</p>
         @endif
+        </div>
     @else
-    <h2>Equipment Details</h2>
-    <table border="1">
+    <h2 class="text-2xl font-semibold mb-4 text-gray-700 text-center justify-center items-center">Equipment Details</h2>
+    <div class="overflow-x-auto flex justify-center">
+    <table class="table-auto bg-white shadow-md rounded-lg mb-6 w-1/2">
         <thead>
             <tr>
-                <th>Item</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
+                <th class="px-4 py-2 bg-gray-200">Item</th>
+                <th class="px-4 py-2 bg-gray-200">Quantity</th>
+                <th class="px-4 py-2 bg-gray-200">Price</th>
+                <th class="px-4 py-2 bg-gray-200">Total</th>
             </tr>
         </thead>
         <tbody>
             @if (!empty($selectedItems))
                 @foreach ($selectedItems as $item)
-                    <tr>
-                        <td>{{ $item['name'] }}</td>
-                        <td>{{ $item['quantity'] }}</td>
-                        <td>₹{{ $item['price'] }}</td>
-                        <td>₹{{ $item['quantity'] * $item['price'] }}</td>
+                    <tr class="hover:bg-gray-100">
+                        <td class="border px-4 py-2">{{ $item['name'] }}</td>
+                        <td class="border px-4 py-2">{{ $item['quantity'] }}</td>
+                        <td class="border px-4 py-2">₹{{ $item['price'] }}</td>
+                        <td class="border px-4 py-2">₹{{ $item['quantity'] * $item['price'] }}</td>
                     </tr>
                 @endforeach
             @else
                 <tr>
-                    <td colspan="4">No equipment selected.</td>
+                    <td colspan="4" class="border px-4 py-2 text-center text-gray-500">No equipment selected.</td>
                 </tr>
             @endif
         </tbody>
     </table>
+    </div>
     @endif
 
+    <div class="flex justify-center">
+    <p class="total-amount font-semibold text-lg mt-4 bg-white p-4 shadow-md rounded-lg text-center justify-center w-1/2">
+        <strong>Total Amount:</strong> ₹{{ $totalAmount }}
+    </p>
+    </div>
+    </section>
+    </div>
 
-    <p class="total-amount"><strong>Total Amount:</strong> ₹{{ $totalAmount }}</p>
-
-    <!-- <div class="flex justify-center space-x-4 mt-6"> -->
-    <!-- Confirm Order Button
-    <form action="{{ route('order.create') }}" method="POST" class="inline">
-        @csrf
-        <button 
-            type="submit" 
-            class="px-6 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition"
-        >
-            Confirm Order
-        </button>
-    </form> -->
-
-    <!-- Back Button -->
-    <!-- <a 
-        href="{{ url()->previous() }}" 
-        class="px-6 py-2 text-white bg-gray-500 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transition"
-    >
-        Back
-    </a> -->
-</div>
-
+    <!-- More buttons -->
+    <div class="flex justify-center ">
+        <div class="p-4 rounded-lg m-4 shadow-md w-3/4 flex justify-center">
+            <div class="flex justify-around w-1/2">
+                <button onclick="alert('Quotation forwarded. Check your email. Redirecting to your dashboard'); window.location.href='/dashboard';" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700">Confirm Order</button>
+                <button onclick="if(confirm('Are you sure?')) { window.location.href='/order'; }" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700">Reset Order</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

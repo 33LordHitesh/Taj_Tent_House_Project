@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Package;
 use App\Models\Material;
+use App\Models\Billing;
+use App\Models\BillingEquipment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BillController extends Controller
 {
@@ -105,6 +108,8 @@ class BillController extends Controller
         }
         // dd($selectedItemsWithDetails); 
 
+        $this->store($name, $mobile, $email, $request->input('billing_address'), $eventType, $selectedPackage, $selectedItemsWithDetails);
+
         // Return the view with the necessary data
         return view('order.bill', [
             'name' => $name,
@@ -116,5 +121,68 @@ class BillController extends Controller
             'totalAmount' => $totalAmount,
         ]);
     }
+
+    // Store method ----->
+    public function store($name, $mobile, $email, $billingAddress, $eventType, $selectedPackage, $selectedItemsWithDetails)
+{
+    // Start a transaction for atomicity
+    DB::beginTransaction();
+    
+    try {
+        // Step 1: Store the billing details in the 'billings' table
+        $billing = Billing::create([
+            'name' => $name,
+            'mobile_number' => $mobile,
+            'email' => $email,
+            'billing_address' => $billingAddress,
+            'event_type' => $eventType,
+            'selected_package' => $selectedPackage, // Optional field
+        ]);
+
+        // Step 2: If the package is not "wedding" (or any other package that requires no billing equipment),
+        // store the selected items in the 'billing_equipments' table
+        if ($eventType !== 'wedding' && !empty($selectedItemsWithDetails)) {
+            $material = Material::where('name', $item['name'])->first();
+            if ($material){
+                foreach ($selectedItemsWithDetails as $item) {
+                    BillingEquipment::create([
+                        'billing_id' => $billing->id, // The newly created billing record
+                        'material_id' => $material->id, // Material ID from the selected items
+                        'quantity' => $item['quantity'], // Quantity of each material
+                        'price' => $item['price'], // Price per item
+                        'total_price' => $item['total'], // Total price (quantity * price)
+                    ]);
+                }
+            }else{
+                // Handle the case where material is not found in the database
+                throw new \Exception("Material not found: " . $item['name']);
+            }
+        }
+
+        // Step 3: Commit the transaction if everything is successful
+        DB::commit();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Billing and equipment data stored successfully.',
+            'billing_id' => $billing->id,
+        ]);
+
+        // Step 4: Redirect or return the appropriate response
+        // return redirect()->route('order.success'); // Example route for success page
+
+    } catch (\Exception $e) {
+        // Rollback the transaction if any part fails
+        DB::rollBack(); // Rollback transaction if any error occurs
+        // Log the error for debugging
+        // Log::error('Error storing billing data: ' . $e->getMessage());
+
+        // Return failure response
+        return response()->json([
+            'status' => 'error',
+            'message' => 'An error occurred while storing the billing data.',
+        ]);
+    }
 }
 
+
+}
