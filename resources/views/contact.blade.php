@@ -69,7 +69,7 @@
                 <div class="mb-4">
                     <label class="block text-gray-700 font-medium mb-2" for="phone">Phone</label>
                     <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </div>
+                </div>  
                 <div class="mb-6">
                     <label class="block text-gray-700 font-medium mb-2" for="message">Message</label>
                     <textarea id="message" name="message" placeholder="Your Message" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>

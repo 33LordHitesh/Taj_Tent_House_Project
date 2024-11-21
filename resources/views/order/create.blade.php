@@ -278,14 +278,14 @@ function isPackageOrEquipmentSelected() {
         // Reset the background color of all checkboxes
         checkboxes.forEach(checkbox => {
             const parentTile = checkbox.closest('.checkbox-wrapper').querySelector('.checkbox-tile');
-            parentTile.style.backgroundColor = checkbox.checked ? 'blue' : 'white'; // Highlight or reset
+            parentTile.style.backgroundColor = checkbox.checked ? 'white' : 'white'; // Highlight or reset
         });
 
         // Find the selected checkbox
         const selectedCheckbox = [...checkboxes].find(checkbox => checkbox.checked);
         if (selectedCheckbox) {
             const parentTile = selectedCheckbox.closest('.checkbox-wrapper').querySelector('.checkbox-tile');
-            parentTile.style.backgroundColor = 'blue'; // Highlight selected checkbox
+            parentTile.style.backgroundColor = 'white'; // Highlight selected checkbox
             console.log('Selected Package:', selectedPackage);
         } else {
             console.log('No package selected');

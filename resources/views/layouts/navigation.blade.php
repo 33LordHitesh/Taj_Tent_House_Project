@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex hover:text-white">
                     <x-nav-link :href="route('landing')" :active="request()->routeIs('landing')">
                         {{ __('Back to Home') }}
                     </x-nav-link>

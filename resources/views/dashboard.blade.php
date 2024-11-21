@@ -12,8 +12,8 @@
                     {{ __("You're logged in!") }}
                 </div>
 
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold mb-4">Recent Orders</h3>
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Recent Orders</h3>
 
                     @if ($recentOrders->isEmpty())
                         <p>No recent orders found.</p>

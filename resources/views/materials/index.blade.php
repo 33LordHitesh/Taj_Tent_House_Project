@@ -10,6 +10,13 @@
             height: 200px;
             object-fit: cover;
         }
+        .hover-image{
+        transform: scale(1.05); /* Initially zoom the image to 125% */
+        transition: transform 0.3s ease; /* Smooth transition effect */
+        }
+        .hover-image:hover{
+        transform: scale(1); /* Reset the image scale on hover */
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -19,9 +26,11 @@
         <h1 class="text-3xl font-bold my-4">Materials & Equipment</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             @foreach($materials as $material)
-                <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                    <img src="{{ $material->image_url }}" class="w-full" alt="{{ $material->name }}">
-                    <div class="p-4">
+                <div class="bg-white shadow-md rounded-lg overflow-hidden flex flex-col justify-between">
+                    <div class="relative w-full h-96">
+                        <img src="{{ $material->image_url }}" class="hover-image object-cover w-full h-full" alt="{{ $material->name }}">
+                    </div>
+                    <div class="p-4"> 
                         <h5 class="text-xl font-semibold">{{ $material->name }}</h5>
                         <p class="text-gray-700">{{ $material->description }}</p>
                         <span class="flex justify-around items-center">
